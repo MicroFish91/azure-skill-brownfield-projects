@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "couplesnap",
+  "workspaces": [
+    "src/functions",
+    "src/web",
+    "src/shared"
+  ],
+  "scripts": {
+    "test": "npm test --workspaces --if-present",
+    "test:functions": "cd src/functions && npm test",
+    "test:web": "cd src/web && npm test",
+    "build": "npm run build --workspaces --if-present",
+    "build:shared": "cd src/shared && npm run build",
+    "emulators:start": "docker compose down && docker compose up -d",
+    "emulators:stop": "docker compose down",
+    "emulators:clean": "docker compose down && rm -rf .azurite .postgres",
+    "db:migrate": "cd src/functions && node -r ../node_modules/ts-node/register ../node_modules/.bin/knex --knexfile ./knexfile.ts migrate:latest"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
+  }
+}

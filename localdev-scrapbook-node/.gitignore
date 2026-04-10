@@ -1,0 +1,26 @@
+# Environment
+.env
+local.settings.json
+
+# Data volumes
+data/
+
+# Build output
+dist/
+
+# Runtime
+node_modules/
+
+# Test output
+coverage/
+
+# IDE
+.vs/
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Vite
+.vite/
