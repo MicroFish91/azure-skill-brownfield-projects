@@ -1,0 +1,26 @@
+# Environment
+.env
+.env.local
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Azure Functions
+local.settings.json
+bin/
+obj/
+
+# Data volumes
+data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
