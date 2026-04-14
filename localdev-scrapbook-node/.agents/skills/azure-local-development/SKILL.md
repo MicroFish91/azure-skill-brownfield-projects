@@ -57,6 +57,7 @@ Scan the full workspace for service roots. Always produce a list of `services[]`
 
 | Action | Reference |
 |--------|-----------|
+| **IMPORTANT**: Always check for `.azure/project-plan.md` in the workspace root. If found, read it to understand the project's architecture, services, runtimes, and Azure dependencies. Use this context to inform planning in subsequent phases. This file is **optional** — if it does not exist, proceed normally. | `.azure/project-plan.md` (if present) |
 | Scan all subdirectories; detect project type + runtime per service root | [classify.md](references/classify.md) |
 | If 2+ service roots found: assemble shared workspace context, deduplicate emulators, assign debug ports | [multi-service.md](references/multi-service.md) |
 
