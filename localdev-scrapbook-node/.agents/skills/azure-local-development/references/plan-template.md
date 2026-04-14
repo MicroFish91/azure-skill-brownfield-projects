@@ -32,7 +32,7 @@ You **MUST** create this plan file BEFORE generating any configuration files. Pr
 | [Migrations](#migrations) | *(if applicable)* Database schema applied automatically on `docker compose up`. |
 | [Convenience Scripts](#convenience-scripts) | Convenience scripts for starting / stopping / cleaning emulators and running migrations. |
 | [Launch Configuration](#launch-configuration) | VS Code `launch.json` and `tasks.json` for F5 debugging. |
-| [Manual Tests](#manual-tests) | Scripts & sample data to invoke each endpoint or trigger for local verification. |
+| [API Test Collections](#api-test-collections) | Scripts & sample data to invoke each endpoint or trigger for local verification. |
 
 ---
 
@@ -215,18 +215,19 @@ npm run db:migrate        # apply migrations (emulators must be running)
 
 ---
 
-## Manual Tests
+## API Test Collections
 
 <!-- List test scripts for each endpoint/trigger in the project. -->
-<!-- Each test gets a subdirectory under manualTestCollections/ with an invoke.sh and optional sample data. -->
+<!-- Each test gets a subdirectory under api-test-collections/local-development/ with an invoke.sh and optional sample data. -->
 
-Manual test collections are stored under `manualTestCollections/` in the workspace. Each subdirectory represents one test and contains a script to invoke it plus any sample data files needed.
+API test collections for local development are stored under `api-test-collections/local-development/` in the workspace. Each subdirectory represents one test and contains a script to invoke it plus any sample data files needed.
 
 ```
-manualTestCollections/
-  {test-name}/
-    invoke.sh
-    {optional-sample-data-files}
+api-test-collections/
+  local-development/
+    {test-name}/
+      invoke.sh
+      {optional-sample-data-files}
 ```
 
 ### {METHOD} {route}

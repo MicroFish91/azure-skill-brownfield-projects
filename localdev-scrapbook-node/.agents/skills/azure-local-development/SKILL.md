@@ -1,6 +1,6 @@
 ---
 name: azure-local-development
-description: "Scan a workspace and generate an opinionated local-development plan so the developer only has to press F5 to debug. Covers prerequisites, Azure emulators via docker-compose (Azurite, Cosmos DB Emulator, Service Bus Emulator, Event Hubs Emulator...), VS Code launch/task configuration, and manual test collections. Defaults to official Azure-provided emulators for all Azure service dependencies. WHEN: \"local dev setup\", \"debug locally\", \"F5 debugging\", \"set up emulators\", \"local development plan\", \"docker compose for local\", \"launch.json\", \"tasks.json\", \"local dev\", \"local development\", \"run locally\", \"debug my app\", \"set up local environment\", \"azurite\", \"cosmos emulator\", \"service bus emulator\"."
+description: "Scan a workspace and generate an opinionated local-development plan so the developer only has to press F5 to debug. Covers prerequisites, Azure emulators via docker-compose (Azurite, Cosmos DB Emulator, Service Bus Emulator, Event Hubs Emulator...), VS Code launch/task configuration, and API test collections. Defaults to official Azure-provided emulators for all Azure service dependencies. WHEN: \"local dev setup\", \"debug locally\", \"F5 debugging\", \"set up emulators\", \"local development plan\", \"docker compose for local\", \"launch.json\", \"tasks.json\", \"local dev\", \"local development\", \"run locally\", \"debug my app\", \"set up local environment\", \"azurite\", \"cosmos emulator\", \"service bus emulator\"."
 license: MIT
 metadata:
   author: Microsoft
@@ -24,7 +24,7 @@ Activate this skill when the user wants to:
 - Add or configure Azure emulators locally (Azurite, Cosmos DB Emulator, Service Bus Emulator, Event Hubs Emulator)
 - Generate `docker-compose.yml` for Azure emulator services
 - Create or update `.vscode/launch.json` and `.vscode/tasks.json`
-- Generate manual test scripts for local triggers & endpoints
+- Generate API test collection scripts for local triggers & endpoints
 - Set up automatic database migrations for local development
 - Prepare a local development plan for their project
 
@@ -74,7 +74,7 @@ Create `.azure/local-development-plan.md` by completing these steps. Do NOT gene
 | 2 | **Detect Prerequisites** — Check which required tools are installed and which are missing | [inventory.md](references/inventory.md) |
 | 3 | **Detect Migrations** — Scan for database migration files or ORM config; if found, plan a docker-compose migration service | [migrations.md](references/migrations.md) |
 | 4 | **Determine Launch Configuration** — Build the `launch.json` / `tasks.json` task chain per service | [runtimes/{rt}.md](references/runtimes/), [project-types/{type}.md](references/project-types/) |
-| 5 | **Identify Manual Tests** — List HTTP endpoints and trigger-based functions that need test scripts | [inventory.md](references/inventory.md), [manual-tests.md](references/manual-tests.md) |
+| 5 | **Plan API Test Collection** — List HTTP endpoints and trigger-based functions that need test scripts | [inventory.md](references/inventory.md), [api-test-collections.md](references/api-test-collections.md) |
 | 6 | **Write Plan** — Generate `.azure/local-development-plan.md` using the template. Prerequisites section must list installed vs. missing with install links. Embed the architecture diagram from step 6. Set **Created** and **Last Updated** to the current UTC datetime (ISO 8601). | [plan-template.md](references/plan-template.md) |
 | 7 | **Present Plan** — Show plan to user and ask for approval. If prerequisites are missing, highlight them and ask the user to install before proceeding. Once approved, update plan status to `Approved` and **Last Updated** timestamp. | `.azure/local-development-plan.md` |
 
@@ -133,7 +133,7 @@ One line per config (non-compound and compound). ✅ requires the ready signal o
 | Launch Config | `.vscode/launch.json` |
 | Task Config | `.vscode/tasks.json` |
 | Convenience Scripts | Runtime-specific script runner (see [runtimes/{rt}.md](references/runtimes/)) |
-| Manual Tests | `manualTestCollections/<test-name>/invoke.sh` |
+| API Test Collections | `api-test-collections/local-development/<test-name>/invoke.sh` |
 
 ---
 

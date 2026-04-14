@@ -1,6 +1,6 @@
 # Inventory Dependencies
 
-Scan the workspace to identify Azure service dependencies, emulator requirements, prerequisite tools, migration configuration, and manual test opportunities. This information feeds directly into the plan.
+Scan the workspace to identify Azure service dependencies, emulator requirements, prerequisite tools, migration configuration, and API test collection opportunities. This information feeds directly into the plan.
 
 > For multi-service workspaces: loop over each service context in `services[]` from `classify.md`. Run steps 1–4 per service; deduplicate emulators and prerequisites across services using the shared workspace context from [multi-service.md](multi-service.md).
 
@@ -103,7 +103,7 @@ Check which local-dev artifacts already exist in the workspace:
 | `docker-compose.yml` or `docker-compose.yaml` | Found / Not found |
 | `local.settings.json` (Functions) | Found / Not found |
 | `.env` / `.env.local` | Found / Not found |
-| `manualTestCollections/` | Found / Not found |
+| `api-test-collections/local-development/` | Found / Not found |
 | `migrations/` or ORM config | Found / Not found |
 | `scripts/db-migrate.sh` | Found / Not found |
 
@@ -150,11 +150,11 @@ Check for required tools on the developer's machine. Only check tools relevant t
 | .NET SDK | `dotnet --version` | .NET projects (⛔ launch config not yet in runtimes/dotnet.md) |
 | Python | `python3 --version` | Python projects (⛔ launch config not yet in runtimes/python.md) |
 | Java / Maven | `mvn --version` | Java projects (⛔ launch config not yet in runtimes/java.md) |
-| Azure CLI | `az --version` | Some manual test scripts |
+| Azure CLI | `az --version` | Some API test collection scripts |
 
 ---
 
-## Step 5: Discover Manual Test Opportunities
+## Step 5: Discover API Test Collection Opportunities
 
 Identify endpoints and triggers that would benefit from test scripts.
 
