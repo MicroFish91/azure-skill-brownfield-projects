@@ -4,7 +4,7 @@ description: "Scan a workspace and generate an opinionated local-development pla
 license: MIT
 metadata:
   author: Microsoft
-  version: "0.2.0"
+  version: "0.1.0"
 ---
 
 # Azure Local Development
@@ -30,13 +30,10 @@ Activate this skill when the user wants to:
 
 ## Rules
 
-1. **Plan first** — Create `.azure/local-development-plan.md` before any code generation
-2. **Get approval** — Present plan to user before execution
-3. **Scan before planning** — Detect project type, dependencies, and bindings
-4. **Update plan progressively** — Mark steps complete as you go; update **Last Updated** timestamp on every status change
-5. ❌ **Destructive actions require `ask_user`** — [Global Rules](references/global-rules.md)
-6. **Preserve existing config** — Never silently overwrite `.vscode/launch.json`, `tasks.json`, or `docker-compose.yml`. Merge or ask first.
-7. **Scope: local development only** — This skill configures the developer's machine and existing workspace project for local debugging. Cloud deployment is handled by **azure-prepare** → **azure-validate** → **azure-deploy**.
+1. **Update plan progressively** — Mark steps complete as you go; update **Last Updated** timestamp on every status change
+2. ❌ **Destructive actions require `ask_user`** — [Global Rules](references/global-rules.md)
+3. **Preserve existing config** — Never silently overwrite `.vscode/launch.json`, `tasks.json`, or `docker-compose.yml`. Merge or ask first.
+4. **Scope — local development only** — This skill configures the developer's machine and existing workspace project for local debugging. Cloud deployment is handled by **azure-prepare** → **azure-validate** → **azure-deploy**.
 
 ---
 
@@ -45,20 +42,18 @@ Activate this skill when the user wants to:
 > **YOU MUST CREATE A PLAN BEFORE DOING ANY WORK**
 >
 > 1. **STOP** — Do not generate any configuration files yet
-> 2. **CLASSIFY** — Run Phase 0 to detect project type(s) and runtime(s)
+> 2. **CLASSIFY** — Run Phase 0 to detect project type(s), runtime(s), and dependencies
 > 3. **PLAN** — Run Phase 1 to create `.azure/local-development-plan.md`
 > 4. **CONFIRM** — Present the plan to the user and get approval
 > 5. **EXECUTE** — Only after approval, run Phase 2
 >
-> The `.azure/local-development-plan.md` file is the **source of truth** for this workflow and for azure-validate and azure-deploy skills. Without it, those skills will fail.
->
-> ⚠️ **CRITICAL: `.azure/local-development-plan.md` must be created inside the workspace root** (e.g., `my-project/.azure/local-development-plan.md`), not in the session-state folder. **You must create this.**
+> ⚠️ **CRITICAL: The `.azure/local-development-plan.md` must be created inside the workspace root** (e.g., `my-project/.azure/local-development-plan.md`), not in the session-state folder.
 
 ---
 
 ## Phase 0: Classify — MANDATORY FIRST ACTION
 
-Scan the full workspace for service roots. Always produce a list of `services[]`. Load the corresponding project-type reference before continuing to Phase 1.
+Scan the full workspace for service roots. Always produce a list of `services[]`. Load the corresponding project-type reference(s) before continuing to Phase 1.
 
 | Action | Reference |
 |--------|-----------|
@@ -66,29 +61,6 @@ Scan the full workspace for service roots. Always produce a list of `services[]`
 | If 2+ service roots found: assemble shared workspace context, deduplicate emulators, assign debug ports | [multi-service.md](references/multi-service.md) |
 
 > ⚠️ If no supported project type is detected, inform the user and ask whether to proceed with a best-effort generic plan or stop.
-
-### Stale Data Directory Detection
-
-When setting up a **new** project (e.g. referencing a fresh `.azure/project-plan.md`), check for leftover emulator data directories from a previous run. Common directories include:
-
-- `.postgres/` — PostgreSQL data
-- `.azurite/` — Azurite blob/queue/table data
-- `.cosmos/` — Cosmos DB Emulator data
-- `.servicebus/` — Service Bus Emulator data
-
-If any of these directories exist in the workspace root, **inform the user immediately** and ask how to proceed:
-
-```
-ask_user(
-  question: "The following stale emulator data directories were found from a previous run:\n\n- .postgres/\n- .azurite/\n\nThese can cause container startup failures (e.g. PostgreSQL initdb errors). How would you like to handle this?",
-  choices: [
-    "Delete them and start fresh (recommended for new projects)",
-    "Keep them — I want to preserve the existing data"
-  ]
-)
-```
-
-If the user chooses to delete, remove the directories before proceeding to Phase 1. **Never delete data directories silently.**
 
 ---
 

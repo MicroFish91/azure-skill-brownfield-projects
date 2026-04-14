@@ -109,6 +109,31 @@ Check which local-dev artifacts already exist in the workspace:
 
 If existing config is found, note it in the plan — the generate phase must **merge**, not overwrite.
 
+### Stale Emulator Data Directories
+
+When setting up a **new** project (e.g. referencing a fresh `.azure/project-plan.md`), check for leftover emulator data directories from a previous run:
+
+| Directory | Emulator |
+|-----------|----------|
+| `.postgres/` | PostgreSQL |
+| `.azurite/` | Azurite (blob/queue/table) |
+| `.cosmos/` | Cosmos DB Emulator |
+| `.servicebus/` | Service Bus Emulator |
+
+If any exist in the workspace root, **inform the user immediately** and ask how to proceed:
+
+```
+ask_user(
+  question: "The following stale emulator data directories were found from a previous run:\n\n- .postgres/\n- .azurite/\n\nThese can cause container startup failures (e.g. PostgreSQL initdb errors). How would you like to handle this?",
+  choices: [
+    "Delete them and start fresh (recommended for new projects)",
+    "Keep them — I want to preserve the existing data"
+  ]
+)
+```
+
+If the user chooses to delete, remove the directories before proceeding. **Never delete data directories silently.**
+
 ---
 
 ## Step 4: Detect Prerequisites
