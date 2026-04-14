@@ -1,0 +1,22 @@
+{
+  "validPhotos": [
+    {
+      "id": "pht-001",
+      "coupleId": "cpl-001",
+      "uploadedBy": "usr-001",
+      "blobUrl": "https://mock.blob.core.windows.net/photos/cpl-001/pht-001",
+      "caption": "Our first adventure!",
+      "createdAt": "2026-01-15T10:30:00.000Z",
+      "updatedAt": "2026-01-15T10:30:00.000Z"
+    },
+    {
+      "id": "pht-002",
+      "coupleId": "cpl-001",
+      "uploadedBy": "usr-002",
+      "blobUrl": "https://mock.blob.core.windows.net/photos/cpl-001/pht-002",
+      "caption": "Sunset at the beach",
+      "createdAt": "2026-02-14T18:00:00.000Z",
+      "updatedAt": "2026-02-14T18:00:00.000Z"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "couples-scrapbook",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "src/shared",
+    "src/functions",
+    "src/web"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm test --workspace=src/functions",
+    "lint": "npm run lint --workspaces --if-present"
+  }
+}
