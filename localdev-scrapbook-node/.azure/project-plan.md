@@ -49,7 +49,7 @@
 | PostgreSQL (Flexible Server) | Users, couples, invites, photo metadata | `DATABASE_URL` | `postgresql://localdev:localdevpassword@localhost:5432/couplesnap` |
 | Azure OpenAI | Generate AI captions for uploaded photos | `AZURE_OPENAI_ENDPOINT` | `http://localhost:11434` (local LLM or mock) |
 
-> _Services listed here are for code and environment configuration. To run these services locally via Docker emulators, use the **local-dev** skill._
+> _Services listed here are for code and environment configuration. To run these services locally via Docker emulators, use the **azure-local-development** skill._
 
 ---
 
@@ -518,6 +518,6 @@ couplesnap/
 
 **When current phase completes:**
 
-1. **Set up local dev environment** — Run the **local-dev** skill to add Docker Compose emulators (Azurite + PostgreSQL), VS Code F5 debugging, and `docker-compose.yml`. The service abstraction layer generated here is fully compatible.
+1. **Set up local dev environment** — Run the **azure-local-development** skill to add Docker Compose emulators (Azurite + PostgreSQL), VS Code F5 debugging, and `docker-compose.yml`. The service abstraction layer generated here is fully compatible.
 
 2. **Deploy to Azure** — Run **azure-prepare** → **azure-validate** → **azure-deploy**. The service abstraction layer ensures your code works against both local mocks and Azure services — no code changes needed.
