@@ -1,0 +1,36 @@
+# dependencies
+node_modules/
+**/node_modules/
+
+# build output
+dist/
+build/
+**/dist/
+**/build/
+
+# env
+.env
+.env.local
+.env.*.local
+local.settings.json
+!**/local.settings.json.example
+
+# logs
+*.log
+npm-debug.log*
+
+# editor
+.vscode/*.local
+.DS_Store
+
+# test
+coverage/
+**/coverage/
+
+# Azure Functions
+bin/
+obj/
+.azurefunctions/
+
+# Vite
+.vite/

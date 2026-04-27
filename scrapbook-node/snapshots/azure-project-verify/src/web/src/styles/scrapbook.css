@@ -1,0 +1,200 @@
+/* Scrapbook palette — warm paper + ribbon accents. */
+
+:root {
+  --paper: #f7f1e1;
+  --paper-shadow: #d6c8a4;
+  --ink: #3a2e22;
+  --accent: #c25b56;
+  --accent-soft: #f0a3a0;
+  --ribbon: #6b8e4e;
+  --card: #fffbef;
+  --tape: rgba(255, 220, 100, 0.6);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,0.6), transparent 40%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.025) 0 1px, transparent 1px 28px),
+    var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.app-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 4rem;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 2px dashed var(--paper-shadow);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.app-title {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 2.4rem;
+  margin: 0;
+  color: var(--accent);
+}
+
+.app-user {
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+button {
+  font: inherit;
+  background: var(--accent);
+  color: white;
+  border: 0;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.1);
+}
+button:hover { background: var(--accent-soft); color: var(--ink); }
+button.ghost { background: transparent; color: var(--ink); border: 1px dashed var(--ink); box-shadow: none; }
+
+.upload-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 3px dashed var(--ribbon);
+  background: rgba(255,255,255,0.6);
+  border-radius: 18px;
+  padding: 2.5rem 1.5rem;
+  min-height: 160px;
+  text-align: center;
+  margin: 0 0 2.5rem;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.upload-dropzone:hover { background: rgba(255,255,255,0.85); }
+.upload-dropzone.drag { background: rgba(107,142,78,0.15); transform: scale(1.01); }
+.upload-dropzone strong { font-size: 1.15rem; color: var(--accent); }
+.upload-dropzone input { display: none; }
+
+.scrapbook-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.scrapbook-card {
+  background: var(--card);
+  padding: 0.75rem 0.75rem 1rem;
+  border-radius: 6px;
+  box-shadow: 4px 4px 0 var(--paper-shadow);
+  transform: rotate(var(--tilt, -1deg));
+  position: relative;
+  transition: transform 0.2s ease;
+}
+.scrapbook-card:nth-child(3n)   { --tilt:  1.2deg; }
+.scrapbook-card:nth-child(3n+1) { --tilt: -1.5deg; }
+.scrapbook-card:nth-child(3n+2) { --tilt:  0.6deg; }
+.scrapbook-card:hover { transform: rotate(0) scale(1.02); }
+.scrapbook-card::before {
+  content: '';
+  position: absolute;
+  top: -10px; left: 50%;
+  transform: translateX(-50%) rotate(-4deg);
+  width: 70px; height: 18px;
+  background: var(--tape);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+.scrapbook-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+.scrapbook-card .caption {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 1.35rem;
+  text-align: center;
+  margin: 0.6rem 0 0;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.scrapbook-card .meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  color: rgba(58,46,34,0.65);
+}
+.scrapbook-card .delete {
+  position: absolute;
+  top: 6px; right: 6px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.85rem;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid var(--accent-soft);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: rgba(58,46,34,0.7);
+  font-style: italic;
+}
+
+.signin-shell, .pair-shell {
+  max-width: 480px;
+  margin: 6rem auto;
+  background: var(--card);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 6px 6px 0 var(--paper-shadow);
+  text-align: center;
+}
+
+.signin-shell h1 {
+  font-family: 'Brush Script MT', cursive;
+  color: var(--accent);
+  font-size: 2.6rem;
+  margin: 0 0 0.5rem;
+}
+
+.invite-code {
+  font-family: 'Courier New', monospace;
+  font-size: 1.6rem;
+  letter-spacing: 0.2rem;
+  background: var(--paper);
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 0.75rem 0;
+}
+
+input[type="text"] {
+  font: inherit;
+  padding: 0.55rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--paper-shadow);
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.error {
+  color: #a13a36;
+  background: rgba(194,91,86,0.1);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}

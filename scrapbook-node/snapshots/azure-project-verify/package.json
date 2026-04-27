@@ -1,0 +1,26 @@
+{
+  "name": "couples-scrapbook",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "src/shared",
+    "src/functions",
+    "src/web"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "build:shared": "npm run build -w src/shared",
+    "build:functions": "npm run build -w src/functions",
+    "build:web": "npm run build -w src/web",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "echo 'lint placeholder'",
+    "start:functions": "npm run start -w src/functions",
+    "start:web": "npm run dev -w src/web"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
