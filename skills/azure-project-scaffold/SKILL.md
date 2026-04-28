@@ -4,7 +4,7 @@ description: "Scaffold the frontend preview, backend services, database, API rou
 license: MIT
 metadata:
   author: Microsoft
-  version: "3.0.0"
+  version: "0.0.0-placeholder"
 ---
 
 # Azure Project Scaffold

@@ -4,7 +4,7 @@ description: "Add test coverage and build verification to a project scaffolded b
 license: MIT
 metadata:
   author: Microsoft
-  version: "1.0.0"
+  version: "0.0.0-placeholder"
 ---
 
 # Azure Project Verify
