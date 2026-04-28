@@ -1,0 +1,14 @@
+{
+  "name": "order-processing",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "src/shared",
+    "src/functions"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm test --workspace src/functions",
+    "start": "npm start --workspace src/functions"
+  }
+}
